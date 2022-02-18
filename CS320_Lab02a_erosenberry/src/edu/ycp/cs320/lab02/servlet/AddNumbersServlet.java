@@ -12,6 +12,7 @@ import edu.ycp.cs320.lab02.model.Numbers;
 
 public class AddNumbersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Numbers model = new Numbers();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -36,16 +37,21 @@ public class AddNumbersServlet extends HttpServlet {
 		// result of calculation goes here
 		Double result = null;
 		
-		Numbers model = new Numbers();
+		
+		// set "game" attribute to the model reference
+		// the JSP will reference the model elements through "add"
+		req.setAttribute("add", model);
 		// decode POSTed form parameters and dispatch to controller
 		try {
 			Double first = getDoubleFromParameter(req.getParameter("first"));
 			Double second = getDoubleFromParameter(req.getParameter("second"));
 			Double third = getDoubleFromParameter(req.getParameter("third"));
+			
 
 			// check for errors in the form data before using is in a calculation
 			if (first == null || second == null || third == null) {
-				errorMessage = "Please specify two numbers";
+				errorMessage = "Please specify three numbers";
+			
 			}
 			// otherwise, data is good, do the calculation
 			// must create the controller each time, since it doesn't persist between POSTs
@@ -63,10 +69,10 @@ public class AddNumbersServlet extends HttpServlet {
 			}
 		} catch (NumberFormatException e) {
 			errorMessage = "Invalid double";
+			
 		}
-		// set "game" attribute to the model reference
-				// the JSP will reference the model elements through "game"
-				req.setAttribute("game", model);
+		
+		
 		// Add parameters as request attributes
 		// this creates attributes named "first" and "second for the response, and grabs the
 		// values that were originally assigned to the request attributes, also named "first" and "second"
@@ -75,6 +81,7 @@ public class AddNumbersServlet extends HttpServlet {
 		req.setAttribute("first", req.getParameter("first"));
 		req.setAttribute("second", req.getParameter("second"));
 		req.setAttribute("third", req.getParameter("third"));
+		
 		
 		// add result objects as attributes
 		// this adds the errorMessage text and the result to the response

@@ -12,7 +12,7 @@ import edu.ycp.cs320.lab02.model.Numbers;
 
 public class MultiplyNumbersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	Numbers model = new Numbers();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -36,7 +36,7 @@ public class MultiplyNumbersServlet extends HttpServlet {
 		// result of calculation goes here
 		Double result = null;
 		
-		Numbers model = new Numbers();
+		//Numbers model = new Numbers();
 		// decode POSTed form parameters and dispatch to controller
 		try {
 			Double first = getDoubleFromParameter(req.getParameter("first"));
