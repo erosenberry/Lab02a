@@ -5,8 +5,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.ycp.cs320.lab02.controller.NumbersController;
-import edu.ycp.cs320.lab02.model.Numbers;
+import edu.ycp.cs320.lab02a_erosenberry.controller.NumbersController;
+import edu.ycp.cs320.lab02a_erosenberry.model.Numbers;
 
 public class NumbersControllerTest {
 	private Numbers model;
@@ -25,12 +25,12 @@ public class NumbersControllerTest {
 	
 	@Test
 	public void testMultiply() {
-		controller.multiply();
-		assertTrue(model.getResult() == 140);
+		
+		assertTrue(controller.multiply() == 140);
 	}
 	@Test
 	public void testAdd() {
-		controller.add();
-		assertTrue(model.getResult() == 27);
+		
+		assertTrue(controller.add() == 27);
 	}
 }
